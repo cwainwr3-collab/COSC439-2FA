@@ -1,3 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 //NOT TESTED YET!!!!, IMPLIMENT SOMETHING WITH OPTA IN ORDER TO TEST IF WE HAVE SOCKETS WORKING CORRECTLY BEFORE IMPLIMENTING DHKE OR WHATEVER
 
