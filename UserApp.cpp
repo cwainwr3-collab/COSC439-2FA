@@ -1,3 +1,10 @@
+
+//This method will open a UDP socket and send a specified message (fix arguement for this later) and close once it has recieved a reply
+int SendMessage()
+{
+
+}
+
 //message to SA
 typedef struct {
 
