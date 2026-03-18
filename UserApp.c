@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
+#include "common.h"
 
 //defining socket for sending to server?
 //int sock;
@@ -30,41 +24,5 @@ int SendMessage()
     if ((respStringLen = recvfrom(sock, echoBuffer, ECHOMAX, 0, (struct sockaddr *) &fromAddr, &fromSize)) != echoStringLen)
         DieWithError("recvfrom() failed");
     close(sock);
+    return 0;
 }
-
-//message to SA
-typedef struct {
-
-enum { registerOTPA,  acknowledgeRegister, login, responsePassword, responseNewKey, logout} messageType;                                   /* same size as an unsigned int */ 
-
-unsigned int userID;                           /* user identifier */
-
-unsigned int pubKeyOrEncPwd;        /* OTP public key or UA encrypted password */
-
-}OPTAorUAtoSA;
-
-/*  messageType = registerOTPA:
-    Message sent from OTPA
-    userID = corresponding user’s userID. 
-    pubKeyOrEncPwd = 0 (not used)
-    messageType = acknowledgeRegister:
-    Message sent from an OTPA
-    userID = corresponding user’s userID. 
-    pubKeyOrEncPwd = 0 (not used)
-    messageType = login:
-    Message sent from a UA
-    userID = corresponding user’s userID. 
-    pubKeyOrEncPwd = 0 (not used)
-    messageType = responsePassword:
-    Message sent from a UA
-    userID = corresponding user’s userID. 
-    pubKeyOrEncPwd = encrypted password
-    messageType = responseNewKey:
-    Message sent from an OTPA
-    userID = corresponding user’s userID. 
-    pubKeyOrEncPwd = OTPA public key
-    messageType = logout:
-    Message sent from a UA
-    userID = corresponding user’s userID. 
-    pubKeyOrEncPwd = 0 (not used)
-*/
